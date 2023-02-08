@@ -21,7 +21,6 @@ params:
   description: John Smith's personal website
   hideColorSchemeToggle: no
   info:
-    - Business Analytics Major
     - Machine Learning Enthusiast 
   keywords: blog,developer,personal
   maxSeeAlsoItems: 5
