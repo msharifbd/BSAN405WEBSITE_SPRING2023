@@ -10,7 +10,7 @@ pygmentsCodeFencesGuessSyntax: yes
 enableEmoji: yes
 params:
   author: John Smith
-  avatarURL: images/avatar.jpg
+  avatarURL: images/siuclogo.png
   colorScheme: auto
   commit: https://github.com/luizdepra/hugo-coder/tree/
   customCSS: []
