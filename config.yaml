@@ -59,6 +59,9 @@ languages:
         - name: PROJECTS
           url: projects/
           weight: 3
+        - name: MACHINE LEARNING  
+          url: machine-learning/
+          weight: 4    
         - name: CONTACT 
           url: contact/
-          weight: 4
+          weight: 5
