@@ -289,106 +289,13 @@ reshape['TOTALSALES'] = reshape['Female'] + reshape ['Male']
 reshape.sort_values('TOTALSALES', ascending = False)
 ```
 
-## Data Visualization 
-
-```{python}
-product.info()
-```
-
-### Bar Chart 
-
-```{python}
-reshape2 = (product[['SIZE_(US)',"GENDER"]].value_counts(dropna = True, sort = False).reset_index(name = 'COUNTS').pivot(index = 'SIZE_(US)', columns = 'GENDER', values = "COUNTS"))
-```
-
-```{python}
-reshape2 = pd.DataFrame(reshape2)
-```
-
-```{python}
-reshape2.head()
-```
-
-```{python}
-reshape2 = reshape2.fillna(0)
-```
-
-```{python}
-reshape2.head()
-```
-
-```{python}
-reshape2['TOTALSALES'] = reshape2['Female'] + reshape2 ['Male']
-```
-
-```{python}
-reshape2.head()
-```
-
-```{python}
-reshape2.info()
-```
-
-```{python}
-reshape2.reset_index(inplace = True) # Recognixing Index column as a new column in the dataset 
-```
-
-```{python}
-reshape2.head()
-```
-
-```{python}
-reshape2.info ()
-```
-
-```{python}
-plt.bar(reshape2['SIZE_(US)'], reshape2['TOTALSALES'])
-plt.title('Sales of Different Sizes of Shoes')
-plt.xlabel('Shoe Size')
-plt.ylabel('Total Sales')
-plt.grid(True)
-plt.show()
-```
-
-
-```{python}
-import seaborn as sns
-```
-
-
-```{python}
-reshape3 = (product[['SIZE_(US)',"GENDER"]].value_counts(dropna = True, sort = False).reset_index(name = 'COUNTS').pivot(index = 'SIZE_(US)', columns = 'GENDER', values = "COUNTS").fillna(0))
-```
-
-```{python}
-reshape3
-```
-
-```{python}
-# Using the Pandas, we created stacked bar chart 
-
-reshape3.plot(kind = 'bar', stacked = True)
-plt.show()
-```
-
-
-```{python}
-# Plotnine is a clone of ggplot2 in R
-from plotnine import *
-```
 
 
 
 
-```{python}
-grid = product[['SIZE_(US)','GENDER', 'COUNTRY']].value_counts().reset_index(name = 'COUNTS')
-grid.info()
-grid.head()
 
-g = sns.FacetGrid(grid, col = 'COUNTRY')
-g.map(sns.barplot, 'SIZE_(US)','GENDER', ci = None)
-plt.show()
-```
+
+
 
 
 
