@@ -1,0 +1,473 @@
+---
+title: "Data Manipulation Using Tidyverse"
+output: html_document
+date: "2023-02-08"
+---
+
+
+
+<div id="loading-necessary-packages" class="section level1">
+<h1>Loading Necessary Packages</h1>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(janitor)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code>library(lubridate)</code></pre>
+<pre><code>## Loading required package: timechange
+## 
+## Attaching package: &#39;lubridate&#39;
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+</div>
+<div id="data-set-for-classroom-practice" class="section level1">
+<h1>Data Set for Classroom Practice</h1>
+<pre class="r"><code># Loading Data 
+
+product &lt;- read_csv(
+  &quot;https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/Al-Bundy_raw-data.csv&quot;
+)</code></pre>
+<pre><code>## Rows: 14967 Columns: 14
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (5): Date, Country, Shop, Gender, Size (Europe)
+## dbl (9): InvoiceNo, ProductID, Size (US), Size (UK), UnitPrice, Discount, Ye...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div id="clean-the-data-set" class="section level1">
+<h1>Clean the Data Set</h1>
+<pre class="r"><code># To clean the names of the variables
+product &lt;- product %&gt;%
+  janitor::clean_names() %&gt;% # this function cleans the names of the variables
+  dplyr::rename_all(toupper) # All variable names in upper case</code></pre>
+</div>
+<div id="meta-data" class="section level1">
+<h1>Meta Data</h1>
+<p>Once you load a data set in R, your next job should be to learn about some characteristics about the data.</p>
+<pre class="r"><code>glimpse(product)</code></pre>
+<pre><code>## Rows: 14,967
+## Columns: 14
+## $ INVOICE_NO  &lt;dbl&gt; 52389, 52390, 52391, 52392, 52393, 52394, 52395, 52396, 52…
+## $ DATE        &lt;chr&gt; &quot;1/1/2014&quot;, &quot;1/1/2014&quot;, &quot;1/1/2014&quot;, &quot;1/1/2014&quot;, &quot;1/1/2014&quot;…
+## $ COUNTRY     &lt;chr&gt; &quot;United Kingdom&quot;, &quot;United States&quot;, &quot;Canada&quot;, &quot;United State…
+## $ PRODUCT_ID  &lt;dbl&gt; 2152, 2230, 2160, 2234, 2222, 2173, 2200, 2238, 2191, 2237…
+## $ SHOP        &lt;chr&gt; &quot;UK2&quot;, &quot;US15&quot;, &quot;CAN7&quot;, &quot;US6&quot;, &quot;UK4&quot;, &quot;US15&quot;, &quot;GER2&quot;, &quot;CAN5…
+## $ GENDER      &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Femal…
+## $ SIZE_US     &lt;dbl&gt; 11.0, 11.5, 9.5, 9.5, 9.0, 10.5, 9.0, 10.0, 10.5, 9.0, 10.…
+## $ SIZE_EUROPE &lt;chr&gt; &quot;44&quot;, &quot;44-45&quot;, &quot;42-43&quot;, &quot;40&quot;, &quot;39-40&quot;, &quot;43-44&quot;, &quot;39-40&quot;, &quot;…
+## $ SIZE_UK     &lt;dbl&gt; 10.5, 11.0, 9.0, 7.5, 7.0, 10.0, 7.0, 9.5, 10.0, 7.0, 9.5,…
+## $ UNIT_PRICE  &lt;dbl&gt; 159, 199, 149, 159, 159, 159, 179, 169, 139, 149, 129, 169…
+## $ DISCOUNT    &lt;dbl&gt; 0.0, 0.2, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1…
+## $ YEAR        &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014…
+## $ MONTH       &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ SALE_PRICE  &lt;dbl&gt; 159.0, 159.2, 119.2, 159.0, 159.0, 159.0, 179.0, 169.0, 13…</code></pre>
+<p>It can be seen that there are 14,967 Rows (also called observations) and 14 columns (also called variables). The name of the first variable is <code>INVOICE_ID</code>, which type is <code>chr</code>, which means it is character type.</p>
+</div>
+<div id="changing-the-types-of-variables" class="section level1">
+<h1>Changing the Types of Variables</h1>
+<p>Sometimes we might need to change the type of the variable; e.g., converting an integer variable to a character variable. In such case, we need to write code.</p>
+<pre class="r"><code># Changing the types of Variables 
+product &lt;- product %&gt;% 
+  mutate(
+    DATE = mdy(DATE),
+    PRODUCT_ID = as.character(PRODUCT_ID),
+    SIZE_US = as.character(SIZE_US),
+    MONTH = as.character(MONTH),
+    INVOICE_NO = as.character(INVOICE_NO)
+  )
+glimpse(product)</code></pre>
+<pre><code>## Rows: 14,967
+## Columns: 14
+## $ INVOICE_NO  &lt;chr&gt; &quot;52389&quot;, &quot;52390&quot;, &quot;52391&quot;, &quot;52392&quot;, &quot;52393&quot;, &quot;52394&quot;, &quot;523…
+## $ DATE        &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-01-01, 2014-01-0…
+## $ COUNTRY     &lt;chr&gt; &quot;United Kingdom&quot;, &quot;United States&quot;, &quot;Canada&quot;, &quot;United State…
+## $ PRODUCT_ID  &lt;chr&gt; &quot;2152&quot;, &quot;2230&quot;, &quot;2160&quot;, &quot;2234&quot;, &quot;2222&quot;, &quot;2173&quot;, &quot;2200&quot;, &quot;2…
+## $ SHOP        &lt;chr&gt; &quot;UK2&quot;, &quot;US15&quot;, &quot;CAN7&quot;, &quot;US6&quot;, &quot;UK4&quot;, &quot;US15&quot;, &quot;GER2&quot;, &quot;CAN5…
+## $ GENDER      &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Femal…
+## $ SIZE_US     &lt;chr&gt; &quot;11&quot;, &quot;11.5&quot;, &quot;9.5&quot;, &quot;9.5&quot;, &quot;9&quot;, &quot;10.5&quot;, &quot;9&quot;, &quot;10&quot;, &quot;10.5&quot;…
+## $ SIZE_EUROPE &lt;chr&gt; &quot;44&quot;, &quot;44-45&quot;, &quot;42-43&quot;, &quot;40&quot;, &quot;39-40&quot;, &quot;43-44&quot;, &quot;39-40&quot;, &quot;…
+## $ SIZE_UK     &lt;dbl&gt; 10.5, 11.0, 9.0, 7.5, 7.0, 10.0, 7.0, 9.5, 10.0, 7.0, 9.5,…
+## $ UNIT_PRICE  &lt;dbl&gt; 159, 199, 149, 159, 159, 159, 179, 169, 139, 149, 129, 169…
+## $ DISCOUNT    &lt;dbl&gt; 0.0, 0.2, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1…
+## $ YEAR        &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014…
+## $ MONTH       &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;…
+## $ SALE_PRICE  &lt;dbl&gt; 159.0, 159.2, 119.2, 159.0, 159.0, 159.0, 179.0, 169.0, 13…</code></pre>
+</div>
+<div id="create-a-new-data-set-with-some-variables" class="section level1">
+<h1>Create a New Data Set with Some Variables</h1>
+<div id="st-first-verb---select" class="section level2">
+<h2>1st (First) verb - <code>select ()</code></h2>
+<p>The <code>select ()</code> function is used to select some <strong>columns</strong> from your data set. For example, if you want to select all variables except <code>SIZE_EUROPE</code> and <code>SIZE_UK</code> from your data set. Then you should write the following code (We created a new data set called product2)</p>
+<pre class="r"><code>product2 &lt;- product %&gt;% 
+  select(
+   -SIZE_EUROPE, - SIZE_UK  
+  )  # 1st Verb
+glimpse(product2)</code></pre>
+<pre><code>## Rows: 14,967
+## Columns: 12
+## $ INVOICE_NO &lt;chr&gt; &quot;52389&quot;, &quot;52390&quot;, &quot;52391&quot;, &quot;52392&quot;, &quot;52393&quot;, &quot;52394&quot;, &quot;5239…
+## $ DATE       &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-01-01, 2014-01-01…
+## $ COUNTRY    &lt;chr&gt; &quot;United Kingdom&quot;, &quot;United States&quot;, &quot;Canada&quot;, &quot;United States…
+## $ PRODUCT_ID &lt;chr&gt; &quot;2152&quot;, &quot;2230&quot;, &quot;2160&quot;, &quot;2234&quot;, &quot;2222&quot;, &quot;2173&quot;, &quot;2200&quot;, &quot;22…
+## $ SHOP       &lt;chr&gt; &quot;UK2&quot;, &quot;US15&quot;, &quot;CAN7&quot;, &quot;US6&quot;, &quot;UK4&quot;, &quot;US15&quot;, &quot;GER2&quot;, &quot;CAN5&quot;…
+## $ GENDER     &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female…
+## $ SIZE_US    &lt;chr&gt; &quot;11&quot;, &quot;11.5&quot;, &quot;9.5&quot;, &quot;9.5&quot;, &quot;9&quot;, &quot;10.5&quot;, &quot;9&quot;, &quot;10&quot;, &quot;10.5&quot;,…
+## $ UNIT_PRICE &lt;dbl&gt; 159, 199, 149, 159, 159, 159, 179, 169, 139, 149, 129, 169,…
+## $ DISCOUNT   &lt;dbl&gt; 0.0, 0.2, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1,…
+## $ YEAR       &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,…
+## $ MONTH      &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;,…
+## $ SALE_PRICE &lt;dbl&gt; 159.0, 159.2, 119.2, 159.0, 159.0, 159.0, 179.0, 169.0, 139…</code></pre>
+</div>
+</div>
+<div id="count-function-to-deal-with-categorical-variables" class="section level1">
+<h1><code>count ()</code> Function to deal with categorical variables</h1>
+<p>To know the frequency of different <strong>categorical</strong> variables, we can use the `<code>count()</code> function. For example - we want to know whether the dataset includes information about United States; we should write -</p>
+<pre class="r"><code># Number of Countries 
+product %&gt;% 
+  count(COUNTRY) </code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   COUNTRY            n
+##   &lt;chr&gt;          &lt;int&gt;
+## 1 Canada          2952
+## 2 Germany         4392
+## 3 United Kingdom  1737
+## 4 United States   5886</code></pre>
+<pre class="r"><code># Number of Years 
+product %&gt;% 
+  count(YEAR)</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##    YEAR     n
+##   &lt;dbl&gt; &lt;int&gt;
+## 1  2014  2753
+## 2  2015  4848
+## 3  2016  7366</code></pre>
+<pre class="r"><code># Number of Invoices 
+product %&gt;% 
+  count(INVOICE_NO)</code></pre>
+<pre><code>## # A tibble: 13,389 × 2
+##    INVOICE_NO     n
+##    &lt;chr&gt;      &lt;int&gt;
+##  1 52389          1
+##  2 52390          1
+##  3 52391          1
+##  4 52392          1
+##  5 52393          1
+##  6 52394          1
+##  7 52395          1
+##  8 52396          1
+##  9 52397          1
+## 10 52398          1
+## # … with 13,379 more rows</code></pre>
+<p><strong>QUESTIONS</strong> - 1. How many products are available in the dataset?
+2. How many shoe sizes are available in the dataset (use <code>SIZE_US</code> variable)</p>
+</div>
+<div id="create-a-new-data-set-that-satisfies-some-rows-conditions" class="section level1">
+<h1>Create a new data set that satisfies some rows conditions</h1>
+<div id="nd-second-verb---filter" class="section level2">
+<h2>2nd (Second) verb - <code>filter ()</code></h2>
+<p>If we want to subset our dataset by rows, then <code>filter ()</code> is used. For example - we want to create a data set that will include only observations for United States, then we should write the following code. The name of the dataset is given <code>US</code>.</p>
+<pre class="r"><code>US &lt;- product %&gt;% 
+  filter(
+    COUNTRY == &quot;United States&quot;
+  )   # 2nd Verb
+
+glimpse(US)</code></pre>
+<pre><code>## Rows: 5,886
+## Columns: 14
+## $ INVOICE_NO  &lt;chr&gt; &quot;52390&quot;, &quot;52392&quot;, &quot;52394&quot;, &quot;52397&quot;, &quot;52399&quot;, &quot;52399&quot;, &quot;523…
+## $ DATE        &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-01-02, 2014-01-0…
+## $ COUNTRY     &lt;chr&gt; &quot;United States&quot;, &quot;United States&quot;, &quot;United States&quot;, &quot;United…
+## $ PRODUCT_ID  &lt;chr&gt; &quot;2230&quot;, &quot;2234&quot;, &quot;2173&quot;, &quot;2191&quot;, &quot;2197&quot;, &quot;2213&quot;, &quot;2206&quot;, &quot;2…
+## $ SHOP        &lt;chr&gt; &quot;US15&quot;, &quot;US6&quot;, &quot;US15&quot;, &quot;US13&quot;, &quot;US1&quot;, &quot;US11&quot;, &quot;US2&quot;, &quot;US15…
+## $ GENDER      &lt;chr&gt; &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Femal…
+## $ SIZE_US     &lt;chr&gt; &quot;11.5&quot;, &quot;9.5&quot;, &quot;10.5&quot;, &quot;10.5&quot;, &quot;10&quot;, &quot;9.5&quot;, &quot;9.5&quot;, &quot;8&quot;, &quot;1…
+## $ SIZE_EUROPE &lt;chr&gt; &quot;44-45&quot;, &quot;40&quot;, &quot;43-44&quot;, &quot;43-44&quot;, &quot;43&quot;, &quot;40&quot;, &quot;40&quot;, &quot;41&quot;, &quot;…
+## $ SIZE_UK     &lt;dbl&gt; 11.0, 7.5, 10.0, 10.0, 9.5, 7.5, 7.5, 7.5, 10.5, 7.5, 9.5,…
+## $ UNIT_PRICE  &lt;dbl&gt; 199, 159, 159, 139, 129, 169, 139, 139, 149, 159, 129, 169…
+## $ DISCOUNT    &lt;dbl&gt; 0.2, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.5, 0.0, 0.0, 0.1…
+## $ YEAR        &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014…
+## $ MONTH       &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;…
+## $ SALE_PRICE  &lt;dbl&gt; 159.2, 159.0, 159.0, 139.0, 129.0, 152.1, 139.0, 139.0, 74…</code></pre>
+<pre class="r"><code>Germany &lt;- product %&gt;% 
+  filter(
+    COUNTRY == &quot;Germany&quot; &amp; YEAR %in% c (&#39;2014&#39;, &#39;2015&#39;)
+  ) 
+glimpse(Germany)</code></pre>
+<pre><code>## Rows: 2,229
+## Columns: 14
+## $ INVOICE_NO  &lt;chr&gt; &quot;52395&quot;, &quot;52401&quot;, &quot;52401&quot;, &quot;52408&quot;, &quot;52409&quot;, &quot;52414&quot;, &quot;524…
+## $ DATE        &lt;date&gt; 2014-01-02, 2014-01-03, 2014-01-03, 2014-01-04, 2014-01-0…
+## $ COUNTRY     &lt;chr&gt; &quot;Germany&quot;, &quot;Germany&quot;, &quot;Germany&quot;, &quot;Germany&quot;, &quot;Germany&quot;, &quot;Ge…
+## $ PRODUCT_ID  &lt;chr&gt; &quot;2200&quot;, &quot;2235&quot;, &quot;2197&quot;, &quot;2206&quot;, &quot;2157&quot;, &quot;2235&quot;, &quot;2239&quot;, &quot;2…
+## $ SHOP        &lt;chr&gt; &quot;GER2&quot;, &quot;GER1&quot;, &quot;GER1&quot;, &quot;GER2&quot;, &quot;GER2&quot;, &quot;GER1&quot;, &quot;GER2&quot;, &quot;G…
+## $ GENDER      &lt;chr&gt; &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Femal…
+## $ SIZE_US     &lt;chr&gt; &quot;9&quot;, &quot;10.5&quot;, &quot;8.5&quot;, &quot;8.5&quot;, &quot;12&quot;, &quot;9.5&quot;, &quot;8.5&quot;, &quot;10.5&quot;, &quot;10…
+## $ SIZE_EUROPE &lt;chr&gt; &quot;39-40&quot;, &quot;43-44&quot;, &quot;39&quot;, &quot;41-42&quot;, &quot;45&quot;, &quot;42-43&quot;, &quot;39&quot;, &quot;43-…
+## $ SIZE_UK     &lt;dbl&gt; 7.0, 10.0, 6.5, 8.0, 11.5, 9.0, 6.5, 10.0, 9.5, 8.0, 10.0,…
+## $ UNIT_PRICE  &lt;dbl&gt; 179, 169, 179, 149, 149, 169, 129, 169, 199, 149, 169, 189…
+## $ DISCOUNT    &lt;dbl&gt; 0.0, 0.5, 0.2, 0.2, 0.2, 0.3, 0.5, 0.5, 0.0, 0.2, 0.5, 0.1…
+## $ YEAR        &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014…
+## $ MONTH       &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;…
+## $ SALE_PRICE  &lt;dbl&gt; 179.0, 84.5, 143.2, 119.2, 119.2, 118.3, 64.5, 84.5, 199.0…</code></pre>
+<pre class="r"><code>count (Germany, YEAR)</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##    YEAR     n
+##   &lt;dbl&gt; &lt;int&gt;
+## 1  2014   710
+## 2  2015  1519</code></pre>
+<p><strong>QUESTIONS</strong> - 1. Filter those observations that belong to United States and Germany and that are related to Male Gender.</p>
+</div>
+</div>
+<div id="average-price-of-shoes" class="section level1">
+<h1>Average Price of Shoes</h1>
+<div id="rd-third-verb---summarize" class="section level2">
+<h2>3rd (Third) verb - <code>summarize ()</code></h2>
+<p>The <code>summarize ()</code> function is used to calculate different statistics such as mean, median, standard deviation, maximum, and minimum value. For example, we want to calculate the average price of all products -</p>
+<pre class="r"><code>product %&gt;% 
+  summarize(AVG_PRICE = mean(SALE_PRICE)) # 3rd Verb</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   AVG_PRICE
+##       &lt;dbl&gt;
+## 1      144.</code></pre>
+</div>
+<div id="th-fourth-verb---group_by" class="section level2">
+<h2>4th (Fourth) verb - <code>group_by ()</code></h2>
+<p>The <code>group_by ()</code> function is very useful when it is used with <code>summarize ()</code> function. For example, we want to know the average price for each country; then, we should write the following code -</p>
+</div>
+<div id="th-fifth-verb---arrange" class="section level2">
+<h2>5th (Fifth) verb - <code>arrange ()</code></h2>
+<p>The <code>arrange ()</code>function allows you to reorder your data set by one or more variables.
+For example, if you want to reorder the average price in difference countries, you need to execute the following code -</p>
+<pre class="r"><code>product %&gt;% 
+  group_by(COUNTRY) %&gt;% # 4th Verb 
+  summarise(AVG_PRICE = mean(SALE_PRICE)) %&gt;% 
+  arrange(AVG_PRICE) # 5th Verb</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   COUNTRY        AVG_PRICE
+##   &lt;chr&gt;              &lt;dbl&gt;
+## 1 Germany             144.
+## 2 United States       144.
+## 3 Canada              144.
+## 4 United Kingdom      146.</code></pre>
+<p><strong>QUESTIONS</strong> - 1. Calculate the average price for both Gender. Who pays greater price?
+2. Calculate the average discount for both Gender. Who gets higher discount?
+3. Calculate the average discount for each month. In which month highest discount is provided?</p>
+</div>
+</div>
+<div id="reshaping-the-data" class="section level1">
+<h1>Reshaping the Data</h1>
+<p>Sometimes we need to reshape our data for different purposes. This is like <code>pivot table</code> in excel. There are two important functions from <code>tidyr</code> that can be used to reshaped data. The first one is - <code>pivot_wider</code> function and the second one is <code>pivot_longer</code> function. <code>pivot_wider</code> widens a <em>LONG</em> data whereas <code>pivot_longer</code> lengthens a <em>WIDE</em> data.</p>
+<div id="identify-total-sales-by-gender-of-each-product-product_id" class="section level2">
+<h2>Identify Total Sales by Gender of Each Product (PRODUCT_ID)</h2>
+<div id="th-sixth-verb---mutate" class="section level3">
+<h3>6th (Sixth) verb - <code>mutate ()</code></h3>
+<p>The function <code>mutate ()</code> is used to create new variables (columns). For example, we want to know the <code>TOTAL_SALE</code>, which is the sum of the sum of sale by gender; then, we should write the following code -</p>
+<pre class="r"><code>product %&gt;%
+  count(PRODUCT_ID, GENDER) %&gt;%
+  arrange(-n) %&gt;% 
+  pivot_wider(
+    names_from = GENDER,
+    values_from = n
+  ) %&gt;% 
+  rename_all(toupper) %&gt;% 
+  rename_at(vars(c(&quot;MALE&quot;,&quot;FEMALE&quot;)), ~paste0(.x,&quot;_SALE&quot;)) %&gt;% 
+  mutate(
+    TOTAL_SALE = MALE_SALE + FEMALE_SALE
+  ) %&gt;% # 6th Verb
+  arrange(-TOTAL_SALE)</code></pre>
+<pre><code>## # A tibble: 96 × 4
+##    PRODUCT_ID MALE_SALE FEMALE_SALE TOTAL_SALE
+##    &lt;chr&gt;          &lt;int&gt;       &lt;int&gt;      &lt;int&gt;
+##  1 2190             132          75        207
+##  2 2226             123          81        204
+##  3 2213             114          90        204
+##  4 2192             135          66        201
+##  5 2158             120          78        198
+##  6 2172             114          75        189
+##  7 2179             102          87        189
+##  8 2239              87         102        189
+##  9 2225             117          69        186
+## 10 2183             123          60        183
+## # … with 86 more rows</code></pre>
+<p><strong>QUESTIONS</strong> - 1. Identify Total Sales by Gender of Each Shoe Size (SIZE_US)</p>
+</div>
+</div>
+</div>
+<div id="bar-chart" class="section level1">
+<h1>Bar Chart</h1>
+<div id="create-a-bar-chart-of-sale-of-shoes-by-gender-of-different-sizes" class="section level2">
+<h2>Create a Bar Chart of Sale of Shoes by Gender of Different Sizes</h2>
+<pre class="r"><code>product %&gt;%
+  count(SIZE_US, GENDER) %&gt;%
+  pivot_wider(
+    names_from = &quot;GENDER&quot;,
+    values_from = &quot;n&quot;
+  ) %&gt;%
+  rename_all(toupper) %&gt;%
+  replace(is.na(.),0) %&gt;%
+  mutate(
+    TOTAL_SALES = FEMALE + MALE
+  ) %&gt;%
+  pivot_longer(
+    cols = c(&quot;FEMALE&quot;, &quot;MALE&quot;),
+    names_to = &quot;GENDER&quot;,
+    values_to = &quot;GENDERSALES&quot;
+  )%&gt;%
+  ggplot(aes(x=reorder(SIZE_US,as.numeric(SIZE_US)), y= GENDERSALES, fill = GENDER))+
+  geom_bar(stat = &quot;identity&quot;)+
+  labs(x = &quot;SHOE SIZE&quot;,
+       y = &quot;TOTAL SALES&quot;,
+       title = &quot;SALES OF DIFFERENT SIZES OF SHOE&quot;)+
+  geom_text(aes(label = GENDERSALES),
+            position = position_stack(vjust = 0.5),
+            color = &quot;black&quot;,
+            size = 2
+  )+
+  theme(legend.title = element_blank())</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="create-a-bar-chart-of-sale-of-shoes-by-gender-of-different-sizes-in-different-countries" class="section level2">
+<h2>Create a Bar Chart of Sale of Shoes by Gender of Different Sizes in different countries</h2>
+<pre class="r"><code>product %&gt;%
+  count(SIZE_US, GENDER, COUNTRY) %&gt;%
+  ggplot(aes(x=reorder(SIZE_US,as.numeric(SIZE_US)), y= n, fill = GENDER))+
+  geom_bar(stat = &quot;identity&quot;)+
+  labs(x = &quot;SHOE SIZE&quot;,
+       y = &quot;TOTAL SALES&quot;,
+       title = &quot;SALES OF DIFFERENT SIZES OF SHOE BY GENDER IN DIFFERENT COUNTRIES&quot;
+  )+
+  geom_text(
+    aes(label = n),
+    position = position_stack(vjust = 0.5),
+    color = &quot;black&quot;,
+    size = 2
+  )+
+  facet_wrap(~ COUNTRY, nrow = 2, ncol = 2
+  )+
+  theme(legend.position=&quot;top&quot;,
+        legend.title = element_blank())+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="create-a-bar-chart-for-product-id-product_id-2190-sales-by-shoes-sizes" class="section level2">
+<h2>Create a Bar Chart for Product ID (PRODUCT_ID) 2190 Sales by shoes sizes</h2>
+<pre class="r"><code>product %&gt;% 
+  filter(
+    PRODUCT_ID == &quot;2190&quot;
+  ) %&gt;% 
+  count(SIZE_US) %&gt;% 
+  mutate(SIZE_US = (str_c (&quot;SIZE_&quot;, SIZE_US))) %&gt;% 
+  ggplot(aes(x = reorder(SIZE_US,n), y = n))+
+  geom_bar(stat=&quot;identity&quot;, color = &quot;blue&quot;, fill = &quot;orange&quot;)+
+  coord_flip()+
+  geom_text(aes(label = n), stat = &quot;identity&quot;, hjust = -0.2)+ # Here also try to use vjust and take out coord_flip()
+  xlab(&quot;SHOE SIZE&quot;)+
+  ylab(&quot;SALES (UNIT)&quot;)+
+  ggtitle(&quot;DISTRIBUTION of SALES for PRODUCT ID 2190&quot;)</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><strong>QUESTIONS</strong> - 1. Create a Bar Chart for Product ID (PRODUCT_ID) 2190 Sales by Gender of Different Shoes Sizes</p>
+</div>
+</div>
+<div id="relationship-between-shoe-size-and-price" class="section level1">
+<h1>Relationship between Shoe Size and Price</h1>
+<pre class="r"><code>product %&gt;%
+  ggplot(
+    aes(x = as.numeric(SIZE_US), y = UNIT_PRICE)
+  )+
+  geom_smooth(se = FALSE)+
+  xlab(&quot;SHOE SIZE (US)&quot;)+
+  ylab(&quot;PRICE&quot;)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>product %&gt;%
+  ggplot(
+    aes(x = as.numeric(SIZE_US), y = UNIT_PRICE, color = COUNTRY)
+  )+
+  geom_smooth(se = FALSE)+
+  xlab(&quot;SHOE SIZE (US)&quot;)+
+  ylab(&quot;PRICE&quot;)+
+  theme(legend.title = element_blank())</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<pre class="r"><code>product %&gt;%
+  ggplot(
+    aes(x = as.numeric(SIZE_US), y = UNIT_PRICE)
+  )+
+  geom_smooth(se = FALSE, color = &quot;red&quot;)+
+  xlab(&quot;SHOE SIZE (US)&quot;)+
+  ylab(&quot;PRICE&quot;)+
+  facet_wrap(~COUNTRY)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-15-3.png" width="672" /></p>
+<pre class="r"><code>product %&gt;%
+  ggplot(
+    aes(x = as.numeric(SIZE_US), y = UNIT_PRICE)
+  )+
+  geom_smooth(se = FALSE)+
+  xlab(&quot;SHOE SIZE (US)&quot;)+
+  ylab(&quot;PRICE&quot;)+
+  facet_wrap(~GENDER)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-15-4.png" width="672" /></p>
+<pre class="r"><code>product %&gt;%
+  ggplot(
+    aes(x = as.numeric(SIZE_US), y = UNIT_PRICE, color = GENDER)
+  )+
+  geom_smooth(se = FALSE)+
+  xlab(&quot;SHOE SIZE (US)&quot;)+
+  ylab(&quot;PRICE&quot;)+
+  theme(legend.title = element_blank())</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-15-5.png" width="672" /></p>
+<div id="relationship-between-shoe-size-and-price-in-different-gender-and-in-different-countries" class="section level2">
+<h2>Relationship between Shoe Size and Price in Different Gender and in Different Countries</h2>
+<pre class="r"><code>product %&gt;%
+  ggplot(
+    aes(x = as.numeric(SIZE_US), y = UNIT_PRICE, color = GENDER)
+  )+
+  geom_smooth(se = FALSE)+
+  xlab(&quot;SHOE SIZE (US)&quot;)+
+  ylab(&quot;PRICE&quot;)+
+  facet_wrap(~COUNTRY)+
+  theme(legend.title = element_blank())</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><strong>QUESTIONS</strong> - 1. Do the Above Analyses for the Relationship between Shoe Size and Discount</p>
+</div>
+</div>
+<div id="relationship-between-sales-and-month" class="section level1">
+<h1>Relationship between Sales and Month</h1>
+<pre class="r"><code>product %&gt;%
+  count(MONTH) %&gt;%
+  ggplot(aes(x = reorder(MONTH,as.numeric(MONTH) ), y = n))+
+  geom_point(color = &quot;red&quot;)+
+  labs(x = &quot;MONTH&quot;,
+       y = &quot;TOTAL SALES&quot;, title = &quot;SALES IN DIFFERENT MONTHS&quot;)</code></pre>
+<p><img src="/posts/dataTidyverse_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><strong>QUESTIONS</strong> - 1. Visualize the Relationship between Sales and Month in different countries</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Data science is the number 1 most promising job in the US in recent years<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Many disciplines around the world are incorporating the knowledge of data science in their day to operations. The skills employers most frequently seek in data sciene job posting are Python, R, ans SQL. It is hoped that the preliminary discussion in this project will help you to get some idea about data science.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://www.techrepublic.com/article/why-data-scientist-is-the-most-promising-job-of-2019/" class="uri">https://www.techrepublic.com/article/why-data-scientist-is-the-most-promising-job-of-2019/</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
