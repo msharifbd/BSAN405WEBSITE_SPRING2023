@@ -52,11 +52,11 @@ languages:
         - name: ABOUT
           url: about/
           weight: 1
-        - name: BLOG
+        - name: PROJECTS
           url: posts/
           weight: 2
-        - name: PROJECTS
-          url: projects/
+        - name: BLOGS
+          url: blogs/
           weight: 3
         - name: MACHINE LEARNING  
           url: machine-learning/
