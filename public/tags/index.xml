@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on John Smith</title>
+    <link>http://www.example.com/tags/</link>
+    <description>Recent content in Tags on John Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Jan 2023 11:51:36 +0100</lastBuildDate><atom:link href="http://www.example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Códigos curtos</title>
+      <link>http://www.example.com/tags/shortcodes/</link>
+      <pubDate>Wed, 04 Jan 2023 11:51:36 +0100</pubDate>
+      
+      <guid>http://www.example.com/tags/shortcodes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>plot</title>
+      <link>http://www.example.com/tags/plot/</link>
+      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      
+      <guid>http://www.example.com/tags/plot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R Markdown</title>
+      <link>http://www.example.com/tags/r-markdown/</link>
+      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      
+      <guid>http://www.example.com/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>regression</title>
+      <link>http://www.example.com/tags/regression/</link>
+      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      
+      <guid>http://www.example.com/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

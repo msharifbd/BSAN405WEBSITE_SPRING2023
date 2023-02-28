@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+  Data Manipulation Using Python · John Smith
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="John Smith">
+<meta name="description" content="library(reticulate) use_condaenv(&#34;anaconda3&#34;) Importing Necessary Packages (Libraries)Link to heading# Importing Necessary Packages import pandas as pd # For Data Manipulation import numpy as np import matplotlib.pyplot as plt # For Data Visualization import seaborn as sns pd.__version__ # This is important because in old version some of the functions from Pandas do not work. ## &#39;1.4.4&#39; Importing the DatasetLink to heading# Importing Dataset product = pd.read_csv(&#34;https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/Al-Bundy_raw-data.csv&#34;) Learning about the MetadataLink to heading# Metadata of the dataset product.">
+<meta name="keywords" content="blog,developer,personal">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Manipulation Using Python"/>
+<meta name="twitter:description" content="library(reticulate) use_condaenv(&#34;anaconda3&#34;) Importing Necessary Packages (Libraries)Link to heading# Importing Necessary Packages import pandas as pd # For Data Manipulation import numpy as np import matplotlib.pyplot as plt # For Data Visualization import seaborn as sns pd.__version__ # This is important because in old version some of the functions from Pandas do not work. ## &#39;1.4.4&#39; Importing the DatasetLink to heading# Importing Dataset product = pd.read_csv(&#34;https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/Al-Bundy_raw-data.csv&#34;) Learning about the MetadataLink to heading# Metadata of the dataset product."/>
+
+<meta property="og:title" content="Data Manipulation Using Python" />
+<meta property="og:description" content="library(reticulate) use_condaenv(&#34;anaconda3&#34;) Importing Necessary Packages (Libraries)Link to heading# Importing Necessary Packages import pandas as pd # For Data Manipulation import numpy as np import matplotlib.pyplot as plt # For Data Visualization import seaborn as sns pd.__version__ # This is important because in old version some of the functions from Pandas do not work. ## &#39;1.4.4&#39; Importing the DatasetLink to heading# Importing Dataset product = pd.read_csv(&#34;https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/Al-Bundy_raw-data.csv&#34;) Learning about the MetadataLink to heading# Metadata of the dataset product." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.example.com/posts/data-manipulation-using-python/" /><meta property="article:section" content="posts" />
+
+
+
+
+
+
+<link rel="canonical" href="http://www.example.com/posts/data-manipulation-using-python/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.0fa2dc75ed1b76894ac0e062b10a6c4730daa745096fa120114b290ed8a48788.css" integrity="sha256-D6Lcde0bdolKwOBisQpsRzDap0UJb6EgEUspDtikh4g=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.593028e7f7ac55c003b79c230d1cd411bb4ca53b31556c3abb7f027170e646e9.css" integrity="sha256-WTAo5/esVcADt5wjDRzUEbtMpTsxVWw6u38CcXDmRuk=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<meta name="generator" content="Hugo 0.110.0">
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      John Smith
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about/">ABOUT</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">PROJECTS</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/blogs/">BLOGS</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/machine-learning/">MACHINE LEARNING</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact/">CONTACT</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://www.example.com/posts/data-manipulation-using-python/">
+              Data Manipulation Using Python
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="0001-01-01T00:00:00Z">
+                January 1, 0001
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              13-minute read
+            </span>
+          </div>
+          
+          
+          
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>library(reticulate)
+</span></span><span style="display:flex;"><span>use_condaenv(<span style="font-style:italic">&#34;anaconda3&#34;</span>)
+</span></span></code></pre></div><h3 id="importing-necessary-packages-libraries">
+  Importing Necessary Packages (Libraries)
+  <a class="heading-link" href="#importing-necessary-packages-libraries">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-style:italic"># Importing Necessary Packages </span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">import</span> <span style="font-weight:bold">pandas</span> <span style="font-weight:bold">as</span> <span style="font-weight:bold">pd</span> <span style="font-style:italic"># For Data Manipulation </span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">import</span> <span style="font-weight:bold">numpy</span> <span style="font-weight:bold">as</span> <span style="font-weight:bold">np</span> 
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">import</span> <span style="font-weight:bold">matplotlib.pyplot</span> <span style="font-weight:bold">as</span> <span style="font-weight:bold">plt</span> <span style="font-style:italic"># For Data Visualization </span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">import</span> <span style="font-weight:bold">seaborn</span> <span style="font-weight:bold">as</span> <span style="font-weight:bold">sns</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pd.__version__ <span style="font-style:italic"># This is important because in old version some of the functions from Pandas do not work.</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &#39;1.4.4&#39;
+</span></span></code></pre></div><h3 id="importing-the-dataset">
+  Importing the Dataset
+  <a class="heading-link" href="#importing-the-dataset">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-style:italic"># Importing Dataset </span>
+</span></span><span style="display:flex;"><span>product = pd.read_csv(<span style="font-style:italic">&#34;https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/Al-Bundy_raw-data.csv&#34;</span>)
+</span></span></code></pre></div><h3 id="learning-about-the-metadata">
+  Learning about the Metadata
+  <a class="heading-link" href="#learning-about-the-metadata">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-style:italic"># Metadata of the dataset </span>
+</span></span><span style="display:flex;"><span>product.shape
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## (14967, 14)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.columns
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## Index([&#39;InvoiceNo&#39;, &#39;Date&#39;, &#39;Country&#39;, &#39;ProductID&#39;, &#39;Shop&#39;, &#39;Gender&#39;,
+</span></span><span style="display:flex;"><span>##        &#39;Size (US)&#39;, &#39;Size (Europe)&#39;, &#39;Size (UK)&#39;, &#39;UnitPrice&#39;, &#39;Discount&#39;,
+</span></span><span style="display:flex;"><span>##        &#39;Year&#39;, &#39;Month&#39;, &#39;SalePrice&#39;],
+</span></span><span style="display:flex;"><span>##       dtype=&#39;object&#39;)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.count()[0] <span style="font-style:italic"># counting the number of rows in the dataset</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## 14967
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.shape[1] <span style="font-style:italic"># counting the number of columns </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## 14
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.dtypes
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## InvoiceNo          int64
+</span></span><span style="display:flex;"><span>## Date              object
+</span></span><span style="display:flex;"><span>## Country           object
+</span></span><span style="display:flex;"><span>## ProductID          int64
+</span></span><span style="display:flex;"><span>## Shop              object
+</span></span><span style="display:flex;"><span>## Gender            object
+</span></span><span style="display:flex;"><span>## Size (US)        float64
+</span></span><span style="display:flex;"><span>## Size (Europe)     object
+</span></span><span style="display:flex;"><span>## Size (UK)        float64
+</span></span><span style="display:flex;"><span>## UnitPrice          int64
+</span></span><span style="display:flex;"><span>## Discount         float64
+</span></span><span style="display:flex;"><span>## Year               int64
+</span></span><span style="display:flex;"><span>## Month              int64
+</span></span><span style="display:flex;"><span>## SalePrice        float64
+</span></span><span style="display:flex;"><span>## dtype: object
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##    InvoiceNo      Date         Country  ...  Year Month SalePrice
+</span></span><span style="display:flex;"><span>## 0      52389  1/1/2014  United Kingdom  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 1      52390  1/1/2014   United States  ...  2014     1     159.2
+</span></span><span style="display:flex;"><span>## 2      52391  1/1/2014          Canada  ...  2014     1     119.2
+</span></span><span style="display:flex;"><span>## 3      52392  1/1/2014   United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 4      52393  1/1/2014  United Kingdom  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [5 rows x 14 columns]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.info()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span><span style="display:flex;"><span>## RangeIndex: 14967 entries, 0 to 14966
+</span></span><span style="display:flex;"><span>## Data columns (total 14 columns):
+</span></span><span style="display:flex;"><span>##  #   Column         Non-Null Count  Dtype  
+</span></span><span style="display:flex;"><span>## ---  ------         --------------  -----  
+</span></span><span style="display:flex;"><span>##  0   InvoiceNo      14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  1   Date           14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  2   Country        14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  3   ProductID      14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  4   Shop           14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  5   Gender         14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  6   Size (US)      14967 non-null  float64
+</span></span><span style="display:flex;"><span>##  7   Size (Europe)  14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  8   Size (UK)      14967 non-null  float64
+</span></span><span style="display:flex;"><span>##  9   UnitPrice      14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  10  Discount       14967 non-null  float64
+</span></span><span style="display:flex;"><span>##  11  Year           14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  12  Month          14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  13  SalePrice      14967 non-null  float64
+</span></span><span style="display:flex;"><span>## dtypes: float64(4), int64(5), object(5)
+</span></span><span style="display:flex;"><span>## memory usage: 1.6+ MB
+</span></span></code></pre></div><h3 id="cleaning-the-dataset">
+  Cleaning the Dataset
+  <a class="heading-link" href="#cleaning-the-dataset">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-style:italic"># Changing the names of the columns to uppercase </span>
+</span></span><span style="display:flex;"><span>product.rename(columns = str.upper, inplace = <span style="font-weight:bold">True</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.columns
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## Index([&#39;INVOICENO&#39;, &#39;DATE&#39;, &#39;COUNTRY&#39;, &#39;PRODUCTID&#39;, &#39;SHOP&#39;, &#39;GENDER&#39;,
+</span></span><span style="display:flex;"><span>##        &#39;SIZE (US)&#39;, &#39;SIZE (EUROPE)&#39;, &#39;SIZE (UK)&#39;, &#39;UNITPRICE&#39;, &#39;DISCOUNT&#39;,
+</span></span><span style="display:flex;"><span>##        &#39;YEAR&#39;, &#39;MONTH&#39;, &#39;SALEPRICE&#39;],
+</span></span><span style="display:flex;"><span>##       dtype=&#39;object&#39;)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-style:italic"># Replacing whitespace in the names of the variables </span>
+</span></span><span style="display:flex;"><span>col_name = product.columns.str.replace(<span style="font-style:italic">&#39; &#39;</span>,<span style="font-style:italic">&#39;_&#39;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.info()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span><span style="display:flex;"><span>## RangeIndex: 14967 entries, 0 to 14966
+</span></span><span style="display:flex;"><span>## Data columns (total 14 columns):
+</span></span><span style="display:flex;"><span>##  #   Column         Non-Null Count  Dtype  
+</span></span><span style="display:flex;"><span>## ---  ------         --------------  -----  
+</span></span><span style="display:flex;"><span>##  0   INVOICENO      14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  1   DATE           14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  2   COUNTRY        14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  3   PRODUCTID      14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  4   SHOP           14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  5   GENDER         14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  6   SIZE (US)      14967 non-null  float64
+</span></span><span style="display:flex;"><span>##  7   SIZE (EUROPE)  14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  8   SIZE (UK)      14967 non-null  float64
+</span></span><span style="display:flex;"><span>##  9   UNITPRICE      14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  10  DISCOUNT       14967 non-null  float64
+</span></span><span style="display:flex;"><span>##  11  YEAR           14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  12  MONTH          14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  13  SALEPRICE      14967 non-null  float64
+</span></span><span style="display:flex;"><span>## dtypes: float64(4), int64(5), object(5)
+</span></span><span style="display:flex;"><span>## memory usage: 1.6+ MB
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.columns = col_name <span style="font-style:italic"># Changing all column names </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.info()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span><span style="display:flex;"><span>## RangeIndex: 14967 entries, 0 to 14966
+</span></span><span style="display:flex;"><span>## Data columns (total 14 columns):
+</span></span><span style="display:flex;"><span>##  #   Column         Non-Null Count  Dtype  
+</span></span><span style="display:flex;"><span>## ---  ------         --------------  -----  
+</span></span><span style="display:flex;"><span>##  0   INVOICENO      14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  1   DATE           14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  2   COUNTRY        14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  3   PRODUCTID      14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  4   SHOP           14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  5   GENDER         14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  6   SIZE_(US)      14967 non-null  float64
+</span></span><span style="display:flex;"><span>##  7   SIZE_(EUROPE)  14967 non-null  object 
+</span></span><span style="display:flex;"><span>##  8   SIZE_(UK)      14967 non-null  float64
+</span></span><span style="display:flex;"><span>##  9   UNITPRICE      14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  10  DISCOUNT       14967 non-null  float64
+</span></span><span style="display:flex;"><span>##  11  YEAR           14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  12  MONTH          14967 non-null  int64  
+</span></span><span style="display:flex;"><span>##  13  SALEPRICE      14967 non-null  float64
+</span></span><span style="display:flex;"><span>## dtypes: float64(4), int64(5), object(5)
+</span></span><span style="display:flex;"><span>## memory usage: 1.6+ MB
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##    INVOICENO      DATE         COUNTRY  ...  YEAR MONTH SALEPRICE
+</span></span><span style="display:flex;"><span>## 0      52389  1/1/2014  United Kingdom  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 1      52390  1/1/2014   United States  ...  2014     1     159.2
+</span></span><span style="display:flex;"><span>## 2      52391  1/1/2014          Canada  ...  2014     1     119.2
+</span></span><span style="display:flex;"><span>## 3      52392  1/1/2014   United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 4      52393  1/1/2014  United Kingdom  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [5 rows x 14 columns]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##        INVOICENO        DATE         COUNTRY  ...  YEAR MONTH SALEPRICE
+</span></span><span style="display:flex;"><span>## 0          52389    1/1/2014  United Kingdom  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 1          52390    1/1/2014   United States  ...  2014     1     159.2
+</span></span><span style="display:flex;"><span>## 2          52391    1/1/2014          Canada  ...  2014     1     119.2
+</span></span><span style="display:flex;"><span>## 3          52392    1/1/2014   United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 4          52393    1/1/2014  United Kingdom  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## ...          ...         ...             ...  ...   ...   ...       ...
+</span></span><span style="display:flex;"><span>## 14962      65773  12/31/2016  United Kingdom  ...  2016    12     139.0
+</span></span><span style="display:flex;"><span>## 14963      65774  12/31/2016   United States  ...  2016    12     149.0
+</span></span><span style="display:flex;"><span>## 14964      65775  12/31/2016          Canada  ...  2016    12     125.3
+</span></span><span style="display:flex;"><span>## 14965      65776  12/31/2016         Germany  ...  2016    12     199.0
+</span></span><span style="display:flex;"><span>## 14966      65777  12/31/2016         Germany  ...  2016    12     125.1
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [14967 rows x 14 columns]
+</span></span></code></pre></div><h3 id="changing-the-types-of-the-variables">
+  Changing the Types of the Variables
+  <a class="heading-link" href="#changing-the-types-of-the-variables">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product[<span style="font-style:italic">&#39;DATE&#39;</span>] = pd.to_datetime(product[<span style="font-style:italic">&#39;DATE&#39;</span>]) <span style="font-style:italic"># Changing the DATE variable from object to date </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.info()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span><span style="display:flex;"><span>## RangeIndex: 14967 entries, 0 to 14966
+</span></span><span style="display:flex;"><span>## Data columns (total 14 columns):
+</span></span><span style="display:flex;"><span>##  #   Column         Non-Null Count  Dtype         
+</span></span><span style="display:flex;"><span>## ---  ------         --------------  -----         
+</span></span><span style="display:flex;"><span>##  0   INVOICENO      14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  1   DATE           14967 non-null  datetime64[ns]
+</span></span><span style="display:flex;"><span>##  2   COUNTRY        14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  3   PRODUCTID      14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  4   SHOP           14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  5   GENDER         14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  6   SIZE_(US)      14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  7   SIZE_(EUROPE)  14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  8   SIZE_(UK)      14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  9   UNITPRICE      14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  10  DISCOUNT       14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  11  YEAR           14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  12  MONTH          14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  13  SALEPRICE      14967 non-null  float64       
+</span></span><span style="display:flex;"><span>## dtypes: datetime64[ns](1), float64(4), int64(5), object(4)
+</span></span><span style="display:flex;"><span>## memory usage: 1.6+ MB
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##    INVOICENO       DATE         COUNTRY  ...  YEAR MONTH SALEPRICE
+</span></span><span style="display:flex;"><span>## 0      52389 2014-01-01  United Kingdom  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 1      52390 2014-01-01   United States  ...  2014     1     159.2
+</span></span><span style="display:flex;"><span>## 2      52391 2014-01-01          Canada  ...  2014     1     119.2
+</span></span><span style="display:flex;"><span>## 3      52392 2014-01-01   United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 4      52393 2014-01-01  United Kingdom  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [5 rows x 14 columns]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.INVOICENO = product.INVOICENO.astype(str) <span style="font-style:italic"># converting integer to object</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product[[<span style="font-style:italic">&#39;MONTH&#39;</span>, <span style="font-style:italic">&#39;PRODUCTID&#39;</span>]] = product[[<span style="font-style:italic">&#39;MONTH&#39;</span>, <span style="font-style:italic">&#39;PRODUCTID&#39;</span>]].astype(str) <span style="font-style:italic"># converting integer to object</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.info()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span><span style="display:flex;"><span>## RangeIndex: 14967 entries, 0 to 14966
+</span></span><span style="display:flex;"><span>## Data columns (total 14 columns):
+</span></span><span style="display:flex;"><span>##  #   Column         Non-Null Count  Dtype         
+</span></span><span style="display:flex;"><span>## ---  ------         --------------  -----         
+</span></span><span style="display:flex;"><span>##  0   INVOICENO      14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  1   DATE           14967 non-null  datetime64[ns]
+</span></span><span style="display:flex;"><span>##  2   COUNTRY        14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  3   PRODUCTID      14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  4   SHOP           14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  5   GENDER         14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  6   SIZE_(US)      14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  7   SIZE_(EUROPE)  14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  8   SIZE_(UK)      14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  9   UNITPRICE      14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  10  DISCOUNT       14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  11  YEAR           14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  12  MONTH          14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  13  SALEPRICE      14967 non-null  float64       
+</span></span><span style="display:flex;"><span>## dtypes: datetime64[ns](1), float64(4), int64(2), object(7)
+</span></span><span style="display:flex;"><span>## memory usage: 1.6+ MB
+</span></span></code></pre></div><h3 id="select---function">
+  SELECT ()  Function
+  <a class="heading-link" href="#select---function">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prod2 = product[[<span style="font-style:italic">&#39;YEAR&#39;</span>,<span style="font-style:italic">&#39;SALEPRICE&#39;</span>, <span style="font-style:italic">&#39;DISCOUNT&#39;</span>, <span style="font-style:italic">&#39;UNITPRICE&#39;</span>]]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prod2.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##    YEAR  SALEPRICE  DISCOUNT  UNITPRICE
+</span></span><span style="display:flex;"><span>## 0  2014      159.0       0.0        159
+</span></span><span style="display:flex;"><span>## 1  2014      159.2       0.2        199
+</span></span><span style="display:flex;"><span>## 2  2014      119.2       0.2        149
+</span></span><span style="display:flex;"><span>## 3  2014      159.0       0.0        159
+</span></span><span style="display:flex;"><span>## 4  2014      159.0       0.0        159
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prod3 = product[[<span style="font-style:italic">&#39;YEAR&#39;</span>,<span style="font-style:italic">&#39;SALEPRICE&#39;</span>, <span style="font-style:italic">&#39;DISCOUNT&#39;</span>, <span style="font-style:italic">&#39;UNITPRICE&#39;</span>,<span style="font-style:italic">&#39;INVOICENO&#39;</span>]].copy()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prod3.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##    YEAR  SALEPRICE  DISCOUNT  UNITPRICE INVOICENO
+</span></span><span style="display:flex;"><span>## 0  2014      159.0       0.0        159     52389
+</span></span><span style="display:flex;"><span>## 1  2014      159.2       0.2        199     52390
+</span></span><span style="display:flex;"><span>## 2  2014      119.2       0.2        149     52391
+</span></span><span style="display:flex;"><span>## 3  2014      159.0       0.0        159     52392
+</span></span><span style="display:flex;"><span>## 4  2014      159.0       0.0        159     52393
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prod4 = product.filter([<span style="font-style:italic">&#39;YEAR&#39;</span>,<span style="font-style:italic">&#39;SALEPRICE&#39;</span>, <span style="font-style:italic">&#39;DISCOUNT&#39;</span>, <span style="font-style:italic">&#39;UNITPRICE&#39;</span>,<span style="font-style:italic">&#39;INVOICENO&#39;</span>, <span style="font-style:italic">&#39;GENDER&#39;</span>], axis = 1)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prod4.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##    YEAR  SALEPRICE  DISCOUNT  UNITPRICE INVOICENO  GENDER
+</span></span><span style="display:flex;"><span>## 0  2014      159.0       0.0        159     52389    Male
+</span></span><span style="display:flex;"><span>## 1  2014      159.2       0.2        199     52390    Male
+</span></span><span style="display:flex;"><span>## 2  2014      119.2       0.2        149     52391    Male
+</span></span><span style="display:flex;"><span>## 3  2014      159.0       0.0        159     52392  Female
+</span></span><span style="display:flex;"><span>## 4  2014      159.0       0.0        159     52393  Female
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-style:italic"># Dropping columns </span>
+</span></span><span style="display:flex;"><span>product.drop([<span style="font-style:italic">&#39;SIZE_(EUROPE)&#39;</span>, <span style="font-style:italic">&#39;SIZE_(UK)&#39;</span>], axis = 1, inplace = <span style="font-weight:bold">True</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.info()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span><span style="display:flex;"><span>## RangeIndex: 14967 entries, 0 to 14966
+</span></span><span style="display:flex;"><span>## Data columns (total 12 columns):
+</span></span><span style="display:flex;"><span>##  #   Column     Non-Null Count  Dtype         
+</span></span><span style="display:flex;"><span>## ---  ------     --------------  -----         
+</span></span><span style="display:flex;"><span>##  0   INVOICENO  14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  1   DATE       14967 non-null  datetime64[ns]
+</span></span><span style="display:flex;"><span>##  2   COUNTRY    14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  3   PRODUCTID  14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  4   SHOP       14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  5   GENDER     14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  6   SIZE_(US)  14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  7   UNITPRICE  14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  8   DISCOUNT   14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  9   YEAR       14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  10  MONTH      14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  11  SALEPRICE  14967 non-null  float64       
+</span></span><span style="display:flex;"><span>## dtypes: datetime64[ns](1), float64(3), int64(2), object(6)
+</span></span><span style="display:flex;"><span>## memory usage: 1.4+ MB
+</span></span></code></pre></div><h3 id="count--function">
+  COUNT () Function
+  <a class="heading-link" href="#count--function">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.COUNTRY.value_counts() <span style="font-style:italic"># Sorting in Descending Order </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## United States     5886
+</span></span><span style="display:flex;"><span>## Germany           4392
+</span></span><span style="display:flex;"><span>## Canada            2952
+</span></span><span style="display:flex;"><span>## United Kingdom    1737
+</span></span><span style="display:flex;"><span>## Name: COUNTRY, dtype: int64
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.YEAR.value_counts().sort_values() <span style="font-style:italic"># Sorting in Ascending Order </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## 2014    2753
+</span></span><span style="display:flex;"><span>## 2015    4848
+</span></span><span style="display:flex;"><span>## 2016    7366
+</span></span><span style="display:flex;"><span>## Name: YEAR, dtype: int64
+</span></span></code></pre></div><h3 id="filter--function">
+  FILTER () Function
+  <a class="heading-link" href="#filter--function">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>US = product.loc[product[<span style="font-style:italic">&#39;COUNTRY&#39;</span>] == <span style="font-style:italic">&#39;United States&#39;</span>] <span style="font-style:italic"># Using loc function </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>US.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##    INVOICENO       DATE        COUNTRY  ...  YEAR MONTH SALEPRICE
+</span></span><span style="display:flex;"><span>## 1      52390 2014-01-01  United States  ...  2014     1     159.2
+</span></span><span style="display:flex;"><span>## 3      52392 2014-01-01  United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 5      52394 2014-01-01  United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 8      52397 2014-01-02  United States  ...  2014     1     139.0
+</span></span><span style="display:flex;"><span>## 10     52399 2014-01-02  United States  ...  2014     1     129.0
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [5 rows x 12 columns]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>US2 = product[product[<span style="font-style:italic">&#39;COUNTRY&#39;</span>] == <span style="font-style:italic">&#39;United States&#39;</span>] <span style="font-style:italic"># Alternative way to filter </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>US2.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##    INVOICENO       DATE        COUNTRY  ...  YEAR MONTH SALEPRICE
+</span></span><span style="display:flex;"><span>## 1      52390 2014-01-01  United States  ...  2014     1     159.2
+</span></span><span style="display:flex;"><span>## 3      52392 2014-01-01  United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 5      52394 2014-01-01  United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 8      52397 2014-01-02  United States  ...  2014     1     139.0
+</span></span><span style="display:flex;"><span>## 10     52399 2014-01-02  United States  ...  2014     1     129.0
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [5 rows x 12 columns]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>US_GERMANY = product.query(<span style="font-style:italic">&#34;COUNTRY == [&#39;Germany&#39;, &#39;United States&#39;]&#34;</span>) <span style="font-style:italic"># Using query function </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>US_GERMANY.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##   INVOICENO       DATE        COUNTRY  ...  YEAR MONTH SALEPRICE
+</span></span><span style="display:flex;"><span>## 1     52390 2014-01-01  United States  ...  2014     1     159.2
+</span></span><span style="display:flex;"><span>## 3     52392 2014-01-01  United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 5     52394 2014-01-01  United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 6     52395 2014-01-02        Germany  ...  2014     1     179.0
+</span></span><span style="display:flex;"><span>## 8     52397 2014-01-02  United States  ...  2014     1     139.0
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [5 rows x 12 columns]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Male = product[product[<span style="font-style:italic">&#39;GENDER&#39;</span>]==<span style="font-style:italic">&#34;Male&#34;</span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Male.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##   INVOICENO       DATE         COUNTRY  ...  YEAR MONTH SALEPRICE
+</span></span><span style="display:flex;"><span>## 0     52389 2014-01-01  United Kingdom  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 1     52390 2014-01-01   United States  ...  2014     1     159.2
+</span></span><span style="display:flex;"><span>## 2     52391 2014-01-01          Canada  ...  2014     1     119.2
+</span></span><span style="display:flex;"><span>## 5     52394 2014-01-01   United States  ...  2014     1     159.0
+</span></span><span style="display:flex;"><span>## 7     52396 2014-01-02          Canada  ...  2014     1     169.0
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [5 rows x 12 columns]
+</span></span></code></pre></div><h3 id="mutate--function">
+  MUTATE () Function
+  <a class="heading-link" href="#mutate--function">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Male.info()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span><span style="display:flex;"><span>## Int64Index: 8919 entries, 0 to 14964
+</span></span><span style="display:flex;"><span>## Data columns (total 12 columns):
+</span></span><span style="display:flex;"><span>##  #   Column     Non-Null Count  Dtype         
+</span></span><span style="display:flex;"><span>## ---  ------     --------------  -----         
+</span></span><span style="display:flex;"><span>##  0   INVOICENO  8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  1   DATE       8919 non-null   datetime64[ns]
+</span></span><span style="display:flex;"><span>##  2   COUNTRY    8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  3   PRODUCTID  8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  4   SHOP       8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  5   GENDER     8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  6   SIZE_(US)  8919 non-null   float64       
+</span></span><span style="display:flex;"><span>##  7   UNITPRICE  8919 non-null   int64         
+</span></span><span style="display:flex;"><span>##  8   DISCOUNT   8919 non-null   float64       
+</span></span><span style="display:flex;"><span>##  9   YEAR       8919 non-null   int64         
+</span></span><span style="display:flex;"><span>##  10  MONTH      8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  11  SALEPRICE  8919 non-null   float64       
+</span></span><span style="display:flex;"><span>## dtypes: datetime64[ns](1), float64(3), int64(2), object(6)
+</span></span><span style="display:flex;"><span>## memory usage: 905.8+ KB
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>dayofweek = Male[<span style="font-style:italic">&#39;DATE&#39;</span>].dt.day_name()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Male = Male.assign(DAYOFWEEK = dayofweek) <span style="font-style:italic"># We use assign function </span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Male.head()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##   INVOICENO       DATE         COUNTRY  ... MONTH SALEPRICE  DAYOFWEEK
+</span></span><span style="display:flex;"><span>## 0     52389 2014-01-01  United Kingdom  ...     1     159.0  Wednesday
+</span></span><span style="display:flex;"><span>## 1     52390 2014-01-01   United States  ...     1     159.2  Wednesday
+</span></span><span style="display:flex;"><span>## 2     52391 2014-01-01          Canada  ...     1     119.2  Wednesday
+</span></span><span style="display:flex;"><span>## 5     52394 2014-01-01   United States  ...     1     159.0  Wednesday
+</span></span><span style="display:flex;"><span>## 7     52396 2014-01-02          Canada  ...     1     169.0   Thursday
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [5 rows x 13 columns]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Male.info()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span><span style="display:flex;"><span>## Int64Index: 8919 entries, 0 to 14964
+</span></span><span style="display:flex;"><span>## Data columns (total 13 columns):
+</span></span><span style="display:flex;"><span>##  #   Column     Non-Null Count  Dtype         
+</span></span><span style="display:flex;"><span>## ---  ------     --------------  -----         
+</span></span><span style="display:flex;"><span>##  0   INVOICENO  8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  1   DATE       8919 non-null   datetime64[ns]
+</span></span><span style="display:flex;"><span>##  2   COUNTRY    8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  3   PRODUCTID  8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  4   SHOP       8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  5   GENDER     8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  6   SIZE_(US)  8919 non-null   float64       
+</span></span><span style="display:flex;"><span>##  7   UNITPRICE  8919 non-null   int64         
+</span></span><span style="display:flex;"><span>##  8   DISCOUNT   8919 non-null   float64       
+</span></span><span style="display:flex;"><span>##  9   YEAR       8919 non-null   int64         
+</span></span><span style="display:flex;"><span>##  10  MONTH      8919 non-null   object        
+</span></span><span style="display:flex;"><span>##  11  SALEPRICE  8919 non-null   float64       
+</span></span><span style="display:flex;"><span>##  12  DAYOFWEEK  8919 non-null   object        
+</span></span><span style="display:flex;"><span>## dtypes: datetime64[ns](1), float64(3), int64(2), object(7)
+</span></span><span style="display:flex;"><span>## memory usage: 975.5+ KB
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Male.DAYOFWEEK.value_counts()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## Wednesday    1307
+</span></span><span style="display:flex;"><span>## Monday       1289
+</span></span><span style="display:flex;"><span>## Sunday       1282
+</span></span><span style="display:flex;"><span>## Tuesday      1270
+</span></span><span style="display:flex;"><span>## Thursday     1267
+</span></span><span style="display:flex;"><span>## Friday       1263
+</span></span><span style="display:flex;"><span>## Saturday     1241
+</span></span><span style="display:flex;"><span>## Name: DAYOFWEEK, dtype: int64
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product[<span style="font-style:italic">&#39;ACTUALPRICE&#39;</span>] = product[<span style="font-style:italic">&#39;SALEPRICE&#39;</span>]*1-product[<span style="font-style:italic">&#39;DISCOUNT&#39;</span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.info()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</span></span><span style="display:flex;"><span>## RangeIndex: 14967 entries, 0 to 14966
+</span></span><span style="display:flex;"><span>## Data columns (total 13 columns):
+</span></span><span style="display:flex;"><span>##  #   Column       Non-Null Count  Dtype         
+</span></span><span style="display:flex;"><span>## ---  ------       --------------  -----         
+</span></span><span style="display:flex;"><span>##  0   INVOICENO    14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  1   DATE         14967 non-null  datetime64[ns]
+</span></span><span style="display:flex;"><span>##  2   COUNTRY      14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  3   PRODUCTID    14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  4   SHOP         14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  5   GENDER       14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  6   SIZE_(US)    14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  7   UNITPRICE    14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  8   DISCOUNT     14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  9   YEAR         14967 non-null  int64         
+</span></span><span style="display:flex;"><span>##  10  MONTH        14967 non-null  object        
+</span></span><span style="display:flex;"><span>##  11  SALEPRICE    14967 non-null  float64       
+</span></span><span style="display:flex;"><span>##  12  ACTUALPRICE  14967 non-null  float64       
+</span></span><span style="display:flex;"><span>## dtypes: datetime64[ns](1), float64(4), int64(2), object(6)
+</span></span><span style="display:flex;"><span>## memory usage: 1.5+ MB
+</span></span></code></pre></div><h3 id="group-by--summarize--functions">
+  GROUP BY &amp; SUMMARIZE () Functions
+  <a class="heading-link" href="#group-by--summarize--functions">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.groupby(<span style="font-style:italic">&#39;COUNTRY&#39;</span>) [<span style="font-style:italic">&#39;SALEPRICE&#39;</span>].mean() <span style="font-style:italic"># Split - Appy - Combine Techniques</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## COUNTRY
+</span></span><span style="display:flex;"><span>## Canada            144.228963
+</span></span><span style="display:flex;"><span>## Germany           143.574658
+</span></span><span style="display:flex;"><span>## United Kingdom    145.505872
+</span></span><span style="display:flex;"><span>## United States     143.727421
+</span></span><span style="display:flex;"><span>## Name: SALEPRICE, dtype: float64
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product[[<span style="font-style:italic">&#34;COUNTRY&#34;</span>, <span style="font-style:italic">&#39;SALEPRICE&#39;</span>]].groupby(<span style="font-style:italic">&#39;COUNTRY&#39;</span>).mean() <span style="font-style:italic"># Alternative way</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>##                  SALEPRICE
+</span></span><span style="display:flex;"><span>## COUNTRY                   
+</span></span><span style="display:flex;"><span>## Canada          144.228963
+</span></span><span style="display:flex;"><span>## Germany         143.574658
+</span></span><span style="display:flex;"><span>## United Kingdom  145.505872
+</span></span><span style="display:flex;"><span>## United States   143.727421
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.groupby(<span style="font-style:italic">&#39;COUNTRY&#39;</span>) [<span style="font-style:italic">&#39;SALEPRICE&#39;</span>].mean().sort_values(ascending = <span style="font-weight:bold">True</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## COUNTRY
+</span></span><span style="display:flex;"><span>## Germany           143.574658
+</span></span><span style="display:flex;"><span>## United States     143.727421
+</span></span><span style="display:flex;"><span>## Canada            144.228963
+</span></span><span style="display:flex;"><span>## United Kingdom    145.505872
+</span></span><span style="display:flex;"><span>## Name: SALEPRICE, dtype: float64
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.groupby(<span style="font-style:italic">&#39;COUNTRY&#39;</span>) [<span style="font-style:italic">&#39;SALEPRICE&#39;</span>].mean().sort_values()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## COUNTRY
+</span></span><span style="display:flex;"><span>## Germany           143.574658
+</span></span><span style="display:flex;"><span>## United States     143.727421
+</span></span><span style="display:flex;"><span>## Canada            144.228963
+</span></span><span style="display:flex;"><span>## United Kingdom    145.505872
+</span></span><span style="display:flex;"><span>## Name: SALEPRICE, dtype: float64
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product.groupby(<span style="font-style:italic">&#39;COUNTRY&#39;</span>) [<span style="font-style:italic">&#39;SALEPRICE&#39;</span>].mean().sort_values(ascending = <span style="font-weight:bold">False</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## COUNTRY
+</span></span><span style="display:flex;"><span>## United Kingdom    145.505872
+</span></span><span style="display:flex;"><span>## Canada            144.228963
+</span></span><span style="display:flex;"><span>## United States     143.727421
+</span></span><span style="display:flex;"><span>## Germany           143.574658
+</span></span><span style="display:flex;"><span>## Name: SALEPRICE, dtype: float64
+</span></span></code></pre></div><h3 id="reshaping-dataset">
+  RESHAPING Dataset
+  <a class="heading-link" href="#reshaping-dataset">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pd.__version__
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## &#39;1.4.4&#39;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>product[[<span style="font-style:italic">&#39;PRODUCTID&#39;</span>,<span style="font-style:italic">&#39;GENDER&#39;</span>]].value_counts()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## PRODUCTID  GENDER
+</span></span><span style="display:flex;"><span>## 2192       Male      135
+</span></span><span style="display:flex;"><span>## 2190       Male      132
+</span></span><span style="display:flex;"><span>## 2206       Male      123
+</span></span><span style="display:flex;"><span>## 2183       Male      123
+</span></span><span style="display:flex;"><span>## 2226       Male      123
+</span></span><span style="display:flex;"><span>##                     ... 
+</span></span><span style="display:flex;"><span>## 2166       Female     39
+</span></span><span style="display:flex;"><span>## 2176       Female     39
+</span></span><span style="display:flex;"><span>## 2235       Female     36
+</span></span><span style="display:flex;"><span>## 2162       Female     33
+</span></span><span style="display:flex;"><span>## 2164       Female     33
+</span></span><span style="display:flex;"><span>## Length: 192, dtype: int64
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>reshape = product[[<span style="font-style:italic">&#39;PRODUCTID&#39;</span>,<span style="font-style:italic">&#39;GENDER&#39;</span>]].value_counts().reset_index(name = <span style="font-style:italic">&#39;COUNTS&#39;</span>).pivot(index = <span style="font-style:italic">&#39;PRODUCTID&#39;</span>, columns = <span style="font-style:italic">&#39;GENDER&#39;</span>, values = <span style="font-style:italic">&#34;COUNTS&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>reshape
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## GENDER     Female  Male
+</span></span><span style="display:flex;"><span>## PRODUCTID              
+</span></span><span style="display:flex;"><span>## 2147           66    99
+</span></span><span style="display:flex;"><span>## 2148           63    84
+</span></span><span style="display:flex;"><span>## 2149           72    90
+</span></span><span style="display:flex;"><span>## 2150           63    87
+</span></span><span style="display:flex;"><span>## 2151           60    96
+</span></span><span style="display:flex;"><span>## ...           ...   ...
+</span></span><span style="display:flex;"><span>## 2238           75    96
+</span></span><span style="display:flex;"><span>## 2239          102    87
+</span></span><span style="display:flex;"><span>## 2240           45    96
+</span></span><span style="display:flex;"><span>## 2241           69   102
+</span></span><span style="display:flex;"><span>## 2242           66    78
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [96 rows x 2 columns]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>reshape[<span style="font-style:italic">&#39;TOTALSALES&#39;</span>] = reshape[<span style="font-style:italic">&#39;Female&#39;</span>] + reshape [<span style="font-style:italic">&#39;Male&#39;</span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>reshape.sort_values(<span style="font-style:italic">&#39;TOTALSALES&#39;</span>, ascending = <span style="font-weight:bold">False</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## GENDER     Female  Male  TOTALSALES
+</span></span><span style="display:flex;"><span>## PRODUCTID                          
+</span></span><span style="display:flex;"><span>## 2190           75   132         207
+</span></span><span style="display:flex;"><span>## 2213           90   114         204
+</span></span><span style="display:flex;"><span>## 2226           81   123         204
+</span></span><span style="display:flex;"><span>## 2192           66   135         201
+</span></span><span style="display:flex;"><span>## 2158           78   120         198
+</span></span><span style="display:flex;"><span>## ...           ...   ...         ...
+</span></span><span style="display:flex;"><span>## 2155           42    78         120
+</span></span><span style="display:flex;"><span>## 2194           51    66         117
+</span></span><span style="display:flex;"><span>## 2229           48    66         114
+</span></span><span style="display:flex;"><span>## 2162           33    72         105
+</span></span><span style="display:flex;"><span>## 2164           33    66          99
+</span></span><span style="display:flex;"><span>## 
+</span></span><span style="display:flex;"><span>## [96 rows x 3 columns]
+</span></span></code></pre></div>
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2023
+     John Smith 
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

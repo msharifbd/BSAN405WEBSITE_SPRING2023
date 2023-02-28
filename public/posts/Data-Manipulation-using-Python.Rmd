@@ -1,0 +1,304 @@
+---
+title: 'Data Manipulation Using Python'
+date: 'February 28, 2023'
+output: html_document
+---
+
+```{r setup, include= FALSE}
+knitr::knit_engines$set(python = reticulate::eng_python)
+```
+
+```{r}
+library(reticulate)
+use_condaenv("anaconda3")
+```
+
+      
+
+### Importing Necessary Packages (Libraries)
+
+```{python}
+# Importing Necessary Packages 
+import pandas as pd # For Data Manipulation 
+import numpy as np 
+import matplotlib.pyplot as plt # For Data Visualization 
+import seaborn as sns
+```
+
+```{python}
+pd.__version__ # This is important because in old version some of the functions from Pandas do not work.
+```
+
+### Importing the Dataset
+
+```{python}
+# Importing Dataset 
+product = pd.read_csv("https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/Al-Bundy_raw-data.csv")
+```
+
+### Learning about the Metadata 
+
+```{python}
+# Metadata of the dataset 
+product.shape
+```
+
+```{python}
+product.columns
+```
+
+```{python}
+product.count()[0] # counting the number of rows in the dataset
+```
+
+```{python}
+product.shape[1] # counting the number of columns 
+```
+
+```{python}
+product.dtypes
+```
+
+```{python}
+product.head()
+```
+
+```{python}
+product.info()
+```
+
+### Cleaning the Dataset 
+
+```{python}
+# Changing the names of the columns to uppercase 
+product.rename(columns = str.upper, inplace = True)
+```
+
+```{python}
+product.columns
+```
+
+```{python}
+# Replacing whitespace in the names of the variables 
+col_name = product.columns.str.replace(' ','_')
+```
+
+```{python}
+product.info()
+```
+
+```{python}
+product.columns = col_name # Changing all column names 
+```
+
+```{python}
+product.info()
+```
+
+```{python}
+product.head()
+```
+
+```{python}
+product
+```
+
+### Changing the Types of the Variables 
+
+```{python}
+product['DATE'] = pd.to_datetime(product['DATE']) # Changing the DATE variable from object to date 
+```
+
+```{python}
+product.info()
+```
+
+```{python}
+product.head()
+```
+
+```{python}
+product.INVOICENO = product.INVOICENO.astype(str) # converting integer to object
+```
+
+```{python}
+product[['MONTH', 'PRODUCTID']] = product[['MONTH', 'PRODUCTID']].astype(str) # converting integer to object
+```
+
+```{python}
+product.info()
+```
+
+### SELECT ()  Function
+
+```{python}
+prod2 = product[['YEAR','SALEPRICE', 'DISCOUNT', 'UNITPRICE']]
+```
+
+```{python}
+prod2.head()
+```
+
+```{python}
+prod3 = product[['YEAR','SALEPRICE', 'DISCOUNT', 'UNITPRICE','INVOICENO']].copy()
+```
+
+```{python}
+prod3.head()
+```
+
+```{python}
+prod4 = product.filter(['YEAR','SALEPRICE', 'DISCOUNT', 'UNITPRICE','INVOICENO', 'GENDER'], axis = 1)
+```
+
+```{python}
+prod4.head()
+```
+
+```{python}
+# Dropping columns 
+product.drop(['SIZE_(EUROPE)', 'SIZE_(UK)'], axis = 1, inplace = True)
+```
+
+```{python}
+product.info()
+```
+
+### COUNT () Function
+
+```{python}
+product.COUNTRY.value_counts() # Sorting in Descending Order 
+```
+
+```{python}
+product.YEAR.value_counts().sort_values() # Sorting in Ascending Order 
+```
+
+### FILTER () Function 
+
+```{python}
+US = product.loc[product['COUNTRY'] == 'United States'] # Using loc function 
+```
+
+```{python}
+US.head()
+```
+
+```{python}
+US2 = product[product['COUNTRY'] == 'United States'] # Alternative way to filter 
+```
+
+```{python}
+US2.head()
+```
+
+```{python}
+US_GERMANY = product.query("COUNTRY == ['Germany', 'United States']") # Using query function 
+```
+
+```{python}
+US_GERMANY.head()
+```
+
+```{python}
+Male = product[product['GENDER']=="Male"]
+```
+
+```{python}
+Male.head()
+```
+
+### MUTATE () Function 
+
+```{python}
+Male.info()
+```
+
+```{python}
+dayofweek = Male['DATE'].dt.day_name()
+```
+
+```{python}
+Male = Male.assign(DAYOFWEEK = dayofweek) # We use assign function 
+```
+
+```{python}
+Male.head()
+```
+
+```{python}
+Male.info()
+```
+
+```{python}
+Male.DAYOFWEEK.value_counts()
+```
+
+```{python}
+product['ACTUALPRICE'] = product['SALEPRICE']*1-product['DISCOUNT']
+```
+
+```{python}
+product.info()
+```
+
+### GROUP BY & SUMMARIZE () Functions 
+
+```{python}
+product.groupby('COUNTRY') ['SALEPRICE'].mean() # Split - Appy - Combine Techniques
+```
+
+```{python}
+product[["COUNTRY", 'SALEPRICE']].groupby('COUNTRY').mean() # Alternative way
+```
+
+```{python}
+product.groupby('COUNTRY') ['SALEPRICE'].mean().sort_values(ascending = True)
+```
+
+```{python}
+product.groupby('COUNTRY') ['SALEPRICE'].mean().sort_values()
+```
+
+```{python}
+product.groupby('COUNTRY') ['SALEPRICE'].mean().sort_values(ascending = False)
+```
+
+### RESHAPING Dataset 
+
+```{python}
+pd.__version__
+```
+
+```{python}
+product[['PRODUCTID','GENDER']].value_counts()
+```
+
+```{python}
+reshape = product[['PRODUCTID','GENDER']].value_counts().reset_index(name = 'COUNTS').pivot(index = 'PRODUCTID', columns = 'GENDER', values = "COUNTS")
+```
+
+```{python}
+reshape
+```
+
+```{python}
+reshape['TOTALSALES'] = reshape['Female'] + reshape ['Male']
+```
+
+```{python}
+reshape.sort_values('TOTALSALES', ascending = False)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

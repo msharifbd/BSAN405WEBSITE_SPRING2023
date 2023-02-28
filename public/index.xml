@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>John Smith</title>
+    <link>http://www.example.com/</link>
+    <description>Recent content on John Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 05 Jan 2023 01:15:29 +0100</lastBuildDate><atom:link href="http://www.example.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ethics in Machine Learning</title>
+      <link>http://www.example.com/firstblog/</link>
+      <pubDate>Tue, 28 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.example.com/firstblog/</guid>
+      <description>R MarkdownLink to headingThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+When you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</description>
+    </item>
+    
+    <item>
+      <title>temas</title>
+      <link>http://www.example.com/categoria/temas/</link>
+      <pubDate>Wed, 04 Jan 2023 23:21:18 +0100</pubDate>
+      
+      <guid>http://www.example.com/categoria/temas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sintaxe</title>
+      <link>http://www.example.com/categoria/sintaxe/</link>
+      <pubDate>Wed, 04 Jan 2023 23:21:06 +0100</pubDate>
+      
+      <guid>http://www.example.com/categoria/sintaxe/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Códigos curtos</title>
+      <link>http://www.example.com/tags/shortcodes/</link>
+      <pubDate>Wed, 04 Jan 2023 11:51:36 +0100</pubDate>
+      
+      <guid>http://www.example.com/tags/shortcodes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hello R Markdown</title>
+      <link>http://www.example.com/posts/2020-12-01-r-rmarkdown/</link>
+      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      
+      <guid>http://www.example.com/posts/2020-12-01-r-rmarkdown/</guid>
+      <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+You can embed an R code chunk like this:
+summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://www.example.com/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.example.com/about/</guid>
+      <description>Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+Hugo makes use of a variety of open source projects including:
+https://github.com/yuin/goldmark https://github.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://www.example.com/about.pt-br/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.example.com/about.pt-br/</guid>
+      <description>Escrito em Go, Hugo é um gerador de sites estáticos de código aberto disponível sobre a licença Apache Licence 2.0. O Hugo suporta TOML, YAML e JSON como arquivos de dados, Markdown e HTML como arquivos de conteúdo, e usa shortcodes para adicionar conteúdos ricos. Outras funcionalidades notaveis são taxonomias, modo multilingual, processamento de imagens, formatos de saída customizaveis, minificação de HTML/CSS/JS e suporte a fluxos SASS/SCSS.
+O Hugo faz o uso de vários projetos de código aberto incluíndo:</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>http://www.example.com/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.example.com/contact/</guid>
+      <description>Follow me, @johndoe.</description>
+    </item>
+    
+    <item>
+      <title>Contato</title>
+      <link>http://www.example.com/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.example.com/contact/</guid>
+      <description>Me siga em @joaoninguem.</description>
+    </item>
+    
+    <item>
+      <title>Data Manipulation Using Python</title>
+      <link>http://www.example.com/posts/data-manipulation-using-python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.example.com/posts/data-manipulation-using-python/</guid>
+      <description>library(reticulate) use_condaenv(&amp;#34;anaconda3&amp;#34;) Importing Necessary Packages (Libraries)Link to heading# Importing Necessary Packages import pandas as pd # For Data Manipulation import numpy as np import matplotlib.pyplot as plt # For Data Visualization import seaborn as sns pd.__version__ # This is important because in old version some of the functions from Pandas do not work. ## &amp;#39;1.4.4&amp;#39; Importing the DatasetLink to heading# Importing Dataset product = pd.read_csv(&amp;#34;https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/Al-Bundy_raw-data.csv&amp;#34;) Learning about the MetadataLink to heading# Metadata of the dataset product.</description>
+    </item>
+    
+    <item>
+      <title>Data Manipulation Using Tidyverse</title>
+      <link>http://www.example.com/posts/datatidyverse/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.example.com/posts/datatidyverse/</guid>
+      <description>Loading Necessary PackagesLink to headinglibrary(tidyverse) ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ── ## ✔ ggplot2 3.4.0 ✔ purrr 1.0.1 ## ✔ tibble 3.1.8 ✔ dplyr 1.0.10 ## ✔ tidyr 1.3.0 ✔ stringr 1.5.0 ## ✔ readr 2.1.3 ✔ forcats 0.5.2 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() library(janitor) ## ## Attaching package: &amp;#39;janitor&amp;#39; ## ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## chisq.</description>
+    </item>
+    
+    <item>
+      <title>Ethics in Machine Learning</title>
+      <link>http://www.example.com/blogs/firstblog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.example.com/blogs/firstblog/</guid>
+      <description>R MarkdownLink to headingThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+When you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>http://www.example.com/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.example.com/projects/</guid>
+      <description>Nothing to see here&amp;hellip; Move along!</description>
+    </item>
+    
+  </channel>
+</rss>
